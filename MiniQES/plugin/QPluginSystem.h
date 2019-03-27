@@ -13,7 +13,8 @@
 
 #include <QObject>
 #include <QQmlEngine>
-
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
 /**
  * @ClassName: QPluginSystem
  * @Description: 用于插件中的系统方法实现
@@ -30,13 +31,14 @@ public:
     static QPluginSystem *getInstance();
     static QObject* QPluginSystem_singletontype_provider(QQmlEngine *engine, QJSEngine *scriptEngine);
     void close();
-signals:
-    void quit();
+    void initQPluginSystem(QGuiApplication &app, QQmlApplicationEngine &engine);
+
 
 private:
     static QPluginSystem * instance;
-    explicit QPluginSystem(QObject *parent = nullptr);
-
+    explicit QPluginSystem();
+    QGuiApplication *m_app;
+    QQmlApplicationEngine *m_engine;
 };
 
 #endif // QPLUGINSYSTEM_H

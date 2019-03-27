@@ -16,7 +16,6 @@ private:
     QQmlApplicationEngine engine;
     Plugin();
     static Plugin *instance;
-
 };
 
 extern "C" Q_DECL_EXPORT void showMainWindow();

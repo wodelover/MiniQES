@@ -1,4 +1,5 @@
 #include "QPluginSystem.h"
+#include <QDebug>
 
 QPluginSystem * QPluginSystem::instance = nullptr;
 
@@ -19,10 +20,21 @@ QObject *QPluginSystem::QPluginSystem_singletontype_provider(QQmlEngine *engine,
 
 void QPluginSystem::close()
 {
-    emit quit();
+    if(m_engine==nullptr){
+        qDebug()<<__FILE__<<__LINE__<<"QQmlApplicationEngine is Empty.";
+        qDebug()<<"did you forget call initQPluginSystem function to set QQmlApplicationEngine?";
+        return;
+    }
+    m_engine->destroyed();
 }
 
-QPluginSystem::QPluginSystem(QObject *parent) : QObject(parent)
+void QPluginSystem::initQPluginSystem(QGuiApplication &app, QQmlApplicationEngine &engine)
 {
-    // nothing todo
+    m_app = &app;
+    m_engine = &engine;
+}
+
+QPluginSystem::QPluginSystem()
+{
+    // nothing to do
 }

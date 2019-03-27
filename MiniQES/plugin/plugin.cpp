@@ -5,7 +5,8 @@ Plugin *Plugin::instance = nullptr;
 
 void Plugin::ShowWindow()
 {
-    qmlRegisterSingletonType<QPluginSystem>("com.kingderzhang.QPluginSystem", 1, 0, "QPluginSystem", QPluginSystem::QPluginSystem_singletontype_provider);
+    qmlRegisterSingletonType<QPluginSystem>("com.kingderzhang.QPluginSystem.QPlugin", 1, 0, "QPlugin", QPluginSystem::QPluginSystem_singletontype_provider);
+
     engine.load(QUrl(QLatin1String("qrc:/test.qml")));
 }
 
